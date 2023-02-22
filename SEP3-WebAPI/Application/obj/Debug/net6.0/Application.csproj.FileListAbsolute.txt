@@ -1,0 +1,15 @@
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/bin/Debug/net6.0/Application.deps.json
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/bin/Debug/net6.0/Application.dll
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/bin/Debug/net6.0/Application.pdb
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/bin/Debug/net6.0/Domain.dll
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/bin/Debug/net6.0/Domain.pdb
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/Application.csproj.AssemblyReference.cache
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/Application.AssemblyInfoInputs.cache
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/Application.AssemblyInfo.cs
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/Application.csproj.CoreCompileInputs.cache
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/Application.csproj.CopyComplete
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/Application.dll
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/refint/Application.dll
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/Application.pdb
+/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/obj/Debug/net6.0/ref/Application.dll

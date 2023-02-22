@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "1Cp9X06cVEEz948c5Ra8zN/XrhQbJEgih5HABsdx/cnZ/dR6QiJP7f87VHv+yk5Iy5rCYPzsfMRfYujgzKUrzQ==",
+  "success": true,
+  "projectFilePath": "/Users/kuba/Documents/GitHub/SEP3-WebAPI/Domain/Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/kuba/.nuget/packages/microsoft.aspnetcore.authorization/6.0.8/microsoft.aspnetcore.authorization.6.0.8.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.aspnetcore.metadata/6.0.8/microsoft.aspnetcore.metadata.6.0.8.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.1/microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.configuration.configurationmanager/7.0.0/system.configuration.configurationmanager.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.security.cryptography.protecteddata/7.0.0/system.security.cryptography.protecteddata.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.security.permissions/7.0.0/system.security.permissions.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.windows.extensions/7.0.0/system.windows.extensions.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

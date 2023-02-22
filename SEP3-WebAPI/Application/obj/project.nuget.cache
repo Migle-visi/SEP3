@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "dgSpecHash": "V2NR5Ui9427+plV/fNYp5fhLGwdoLrPVNVo50YktAMAlPJZXGmECG9J9vC6Oyh4Dy9fBZrO2VoO9AxJv6XDJzw==",
+  "success": true,
+  "projectFilePath": "/Users/kuba/Documents/GitHub/SEP3-WebAPI/Application/Application.csproj",
+  "expectedPackageFiles": [
+    "/Users/kuba/.nuget/packages/google.protobuf/3.21.9/google.protobuf.3.21.9.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/grpc.core.api/2.49.0/grpc.core.api.2.49.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/grpc.net.client/2.49.0/grpc.net.client.2.49.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/grpc.net.common/2.49.0/grpc.net.common.2.49.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/grpc.tools/2.50.0/grpc.tools.2.50.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.aspnetcore.authorization/6.0.8/microsoft.aspnetcore.authorization.6.0.8.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.aspnetcore.metadata/6.0.8/microsoft.aspnetcore.metadata.6.0.8.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.1/microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.configuration.configurationmanager/7.0.0/system.configuration.configurationmanager.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.security.cryptography.protecteddata/7.0.0/system.security.cryptography.protecteddata.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.security.permissions/7.0.0/system.security.permissions.7.0.0.nupkg.sha512",
+    "/Users/kuba/.nuget/packages/system.windows.extensions/7.0.0/system.windows.extensions.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
