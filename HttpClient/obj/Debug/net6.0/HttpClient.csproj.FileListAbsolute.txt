@@ -1,0 +1,15 @@
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/bin/Debug/net6.0/HttpClient.deps.json
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/bin/Debug/net6.0/HttpClient.dll
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/bin/Debug/net6.0/HttpClient.pdb
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/bin/Debug/net6.0/Domain.dll
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/bin/Debug/net6.0/Domain.pdb
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/HttpClient.csproj.AssemblyReference.cache
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/HttpClient.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/HttpClient.AssemblyInfoInputs.cache
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/HttpClient.AssemblyInfo.cs
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/HttpClient.csproj.CoreCompileInputs.cache
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/HttpClient.csproj.CopyComplete
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/HttpClient.dll
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/refint/HttpClient.dll
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/HttpClient.pdb
+/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/Debug/net6.0/ref/HttpClient.dll

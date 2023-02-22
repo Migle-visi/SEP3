@@ -1,0 +1,252 @@
+@using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@using Domain.DTOs
+@using System.ComponentModel
+@using System.Security.Claims
+@inject NavigationManager navigationManager
+@inject ILoginService loginService
+
+<div class="login-comp-wrapper">
+    <div class="login-title-wrapper">
+        @switch (State)
+        {
+            case "login":
+                <p class="login-title">Login</p>
+                break;
+            case "register":
+                <p class="login-title">Sign up</p>
+                break;
+            case "created":
+                <p class="login-title">Account created</p>
+                break;
+            case "updateLicense":
+                <p class="login-title">Driver's License Number</p>
+                break;
+                    
+        }
+    </div>
+    @switch (State)
+    {
+        case "register":
+            <div class="form-button-wrapper">
+                <div class="form-wrapper">
+                    <div class="form-inner-wrapper">
+                        <div class="field-wrapper">
+                            <label class="input-label" for="name">Full name</label>
+                            <input class="input" type="text" id="name" @bind="name" placeholder="Insert your name"  />
+                            <div class="error-label">@errorRegister</div>
+                        </div>
+                        @if (UserType == "driver")
+                        {
+                           <div class="field-wrapper">
+                               <label class="input-label" for="license">Driver's license number</label>
+                               <input class="input" id="license" @bind="licenseNo" type="text" placeholder="Insert your driver's license number"/>
+                               <div class="error-label">@errorRegister</div>
+                               </div> 
+                        }
+                        
+                        <div class="field-wrapper">
+                            <label class="input-label" for="phone">Phone number</label>
+                            <input class="input" id="phone" @bind="phone" type="text" placeholder="Insert your phone"/>
+                            <div class="error-label">@errorRegister</div>
+                        </div>
+                        <div class="field-wrapper">
+                            <label class="input-label" for="email">Email</label>
+                            <input class="input" id="email" @bind="emailRegister" type="text" placeholder="Insert your email"/>
+                            <div class="error-label">@errorRegister</div>
+                        </div>
+                        <div class="field-wrapper">
+                            <label class="input-label" for="password">Password</label>
+                            <input class="input" id="password" @bind="passwordRegister" type="password" placeholder="Insert your password"/>
+                            <div class="error-label">@errorRegister</div>
+                        </div>
+                
+                    </div>
+                </div>
+                <SecondaryButton Text="Sign up" OnClickFunction="@ChangeState"></SecondaryButton>
+                <p class="login-footer-text">Already have an account? <a href="auth/login">Log in here</a></p>
+            </div>
+            break;
+            case "login":
+                <div class="form-button-wrapper">
+                    <div class="form-wrapper">
+                        <div class="form-inner-wrapper">
+                            <div class="field-wrapper">
+                                <label class="input-label" for="email">Email</label>
+                                <input class="input" type="text" id="email" @bind="email" placeholder="Insert your email" />
+                                <div class="error-label">@errorLogin</div>
+                            </div>
+                            <div class="field-wrapper">
+                                <label class="input-label" for="password">Password</label>
+                                <input class="input" id="password" type="password" @bind="password" placeholder="Insert your password"/>
+                                <div class="error-label">@errorLogin</div>
+                            </div>
+                        </div>
+                    </div>
+                    <SecondaryButton Text="Sign up" OnClickFunction="@ChangeState"></SecondaryButton>
+                    <p class="login-footer-text">Don't have account? <a href="auth/register" >Create an account</a></p>
+                </div>
+                break;
+                case "created":
+                    <p class="login-text">We have successfully created your account</p>
+                    <SecondaryButton Text="Continue" OnClickFunction="@ChangeState"></SecondaryButton>
+                    break;
+                case "updateLicense":
+                    <div class="form-button-wrapper">
+                        <div class="form-wrapper">
+                            <div class="form-inner-wrapper">
+                                <div class="field-wrapper">
+                                    <label class="input-label" for="license">Driver's license number</label>
+                                    <input class="input" id="license" type="text" @bind="updatedLicenseNo" placeholder="Insert your driver's license number"/>
+                                    <div class="error-label">@error</div>
+                                </div>
+                            </div>
+                        </div>
+                        <SecondaryButton Text="Continue" OnClickFunction="@ChangeState"></SecondaryButton>
+                        <p class="login-footer-text">We need your license number before you start creating a ride.</p>
+                    </div>
+                    break;
+    }
+    
+</div>
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+
+    [Parameter] 
+    public string State { get; set; }
+    
+    [Parameter] 
+    public string UserType { get; set; }= "passenger";
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+
+
+    private string? updatedLicenseNo;
+    private string? name;
+    private string? emailRegister;
+    private string? licenseNo;
+    private string? phone;
+    private string? passwordRegister;
+    private string? errorRegister = "";
+    private string? errorLogin = "";
+    private string? error = "";
+    private string? email;
+    private string? password;
+
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+        isLoggedIn = user.Identity != null;
+        userClaims = user.Claims;    
+    }
+
+    private async Task ChangeState()
+    {
+        try
+        {
+            switch (State)
+                    {
+                        case "register":
+                            if (String.IsNullOrEmpty(emailRegister) || String.IsNullOrEmpty(passwordRegister) ||
+                                String.IsNullOrEmpty(name) || String.IsNullOrEmpty(phone))
+                            {
+                                throw new Exception("Fill correctly form");
+                            }
+
+                            if (UserType == "driver" && String.IsNullOrEmpty(licenseNo) )
+                        {
+                            throw new Exception("Fill correctly form");
+                        }
+                            RegisterDto registerDto = new RegisterDto()
+                            {
+                                Email = emailRegister,
+                                Password = passwordRegister,
+                                Name = name,
+                                LicenseNumber = licenseNo,
+                                Phone = phone
+                            };
+
+                            await loginService.RegisterAsync(registerDto);
+                            await loginService.LoginAsync(new LoginDto() { Email = emailRegister, Password = passwordRegister });
+                            State = "created";
+                            break;
+                        case "login":
+                            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password) )
+                            {
+                                throw new Exception("Fill correctly form");
+                            }
+                            LoginDto dto = new LoginDto()
+                            {
+                                Email = email,
+                                Password = password
+                            };  
+                            await loginService.LoginAsync(dto);
+                            AuthenticationState authState = await AuthState;
+                            ClaimsPrincipal user = authState.User;
+                            isLoggedIn = user.Identity != null;
+        
+                            if (!isLoggedIn) return;
+                            
+                            userClaims = user.Claims;
+                            var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+                            string hasLicenseNumber = enumerable.First(claim => claim.Type.Equals("hasLicenseNumber")).Value;
+                            if (UserType == "passenger")
+                            {
+                                navigationManager.NavigateTo("/PassengerView");
+                            }
+                            else if (Boolean.Parse(hasLicenseNumber) && UserType == "driver")
+                            {
+                                navigationManager.NavigateTo("/DriverView");
+                            }
+                            else
+                            {
+                                State = "updateLicense";
+
+                            }
+                            break;
+                        case "created":
+                            navigationManager.NavigateTo(UserType == "driver" ? "/DriverView" : "/PassengerView");
+                            break;
+                        case "updateLicense":
+                            enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+                            string userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+                            Console.WriteLine(userId);
+                            Console.WriteLine(updatedLicenseNo);
+                            UpdateLicenseDto updateLicenseDto = new UpdateLicenseDto()
+                            {
+                                LicenseNo = Int32.Parse(updatedLicenseNo),
+                                UserId = Int32.Parse(userId)
+                            };
+                            await loginService.UpdateUserLicense(updateLicenseDto);
+                            navigationManager.NavigateTo("/DriverView");
+                            break;
+                    }
+            StateHasChanged();
+
+        }
+        catch (Exception e)
+        {
+            if (State == "login")
+            {
+                            errorLogin = "Wrong credentials";
+
+            }
+            if(State == "register")
+            {
+                errorRegister = "Invalid data";
+            }
+            if (State == "updateLicense")
+            {
+                error= "Error with saving license";
+            }
+            StateHasChanged();
+        }
+        
+    }
+}

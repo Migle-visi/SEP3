@@ -1,0 +1,33 @@
+.container[b-ambw5leo0y]{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 4px 16px 3px 16px;
+    gap: 10px;
+    border-radius: 34px;
+}
+
+.content[b-ambw5leo0y]{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 13px;
+    /* identical to box height */
+    color: #FFFFFF;
+    padding: 0;
+}
+
+.rejected[b-ambw5leo0y]{
+    background: #943F3F;
+    border: 1px solid #5F2727;
+}
+
+.accepted[b-ambw5leo0y]{
+    background: #477A3B;
+    border: 1px solid #375530;
+}
+
+.pending[b-ambw5leo0y]{
+    background: #282A3F;
+    border: 1px solid #34364A;
+}

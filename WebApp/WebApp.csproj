@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\HttpClient\HttpClient.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.8" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="wwwroot\Scripts\jsTest.js" />
+      <None Update="Shared\Components\Ride\RideManager.razor.css">
+        <DependentUpon>RideManager.razor</DependentUpon>
+      </None>
+    </ItemGroup>
+</Project>

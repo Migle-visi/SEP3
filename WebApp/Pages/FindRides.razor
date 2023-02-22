@@ -1,0 +1,111 @@
+@page "/FindRides"
+@using WebApp.Shared.Components.Ride
+@using Domain.Models
+@using WebApp.Shared.Components
+@using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@using Ride = Domain.Models.Ride
+@using System.Security.Claims
+@inject IRideService rideService
+@attribute [Authorize]
+
+<div class="find-rides-page-wrapper">
+    <div class="home-page-titles">
+        <h1 class="title-primary">Your ride starts here</h1>
+        <h5 class="title-secondary">Some placeholder text so that the thing doesn’t look wierd</h5>
+    </div>
+    <div class="find-rides-rides-container">
+        
+        <div class="filters-container">
+            <div class="input-container">
+                <label for="startDate" class="filter-label">Start date</label>
+                <input id="startDate" type="text" class="filter-input" @bind="startDate" placeholder="20/02/2023"/>
+            </div>
+            <div class="line"></div>
+            <div class="input-container">
+                <label for="endDate" class="filter-label">End date</label>
+                <input id="endDate" type="text" class="filter-input" @bind="endDate" placeholder="20/02/2023"/>
+            </div>
+            <SecondaryButton Text="Find a ride" OnClickFunction="filterRides"></SecondaryButton>
+            <SecondaryButton Text="Reset filters" OnClickFunction="resetFilters"></SecondaryButton>
+
+        </div>
+        
+        <div class="back-button-container">
+                    <BackButton Url="/PassengerView"></BackButton>
+            </div>
+        @foreach (Ride ride in rides)
+        {
+
+
+            <Ride ride="ride"></Ride>
+        }
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+    private string? endDate = null;
+    private string? startDate = null;
+    string userId;
+
+    List<Ride> rides = new List<Ride>();
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            AuthenticationState authState = await AuthState;
+            ClaimsPrincipal user = authState.User;
+            isLoggedIn = user.Identity != null;
+        
+            if (!isLoggedIn) return;
+        
+            userClaims = user.Claims;
+            var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+             userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+            rides = await rideService.GetAllRidesAsync(startDate,endDate, userId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private async Task filterRides()
+    {
+        try
+        {
+        rides = await rideService.GetAllRidesAsync(startDate, endDate, userId);
+        StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        
+    }
+    
+    private async Task resetFilters()
+    {
+        try
+        {
+            startDate = null;
+            endDate = null;
+            rides = await rideService.GetAllRidesAsync(startDate, endDate, userId);
+            StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
+        
+    }
+
+
+}

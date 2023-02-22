@@ -1,0 +1,40 @@
+.page-wrapper[b-esgejc0kvw]{
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 200px;
+}
+
+.page-wrapper h1[b-esgejc0kvw]{
+    font-family: "PP Mori SemiBold";
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 38px;
+    /* identical to box height */
+
+    text-align: center;
+
+    background: linear-gradient(180deg, #EEEFFB 0%, rgba(238, 239, 251, 0.5) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.rides-container[b-esgejc0kvw]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.back-button-container[b-esgejc0kvw]
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+
+}

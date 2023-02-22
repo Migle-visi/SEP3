@@ -1,0 +1,64 @@
+@page "/"
+@using WebApp.Shared.Components.Buttons
+@using System.Security.Claims
+@inject NavigationManager navigationManager
+
+<div class="home-page-wrapper">
+    <div class="home-page-titles">
+        <h1 class="title-primary">Your ride starts here</h1>
+        <h5 class="title-secondary">Some placeholder text so that the thing doesn’t look wierd</h5>
+    </div>
+    <div class="buttons-container">
+        <SecondaryButton Text="I’m a passenger" OnClickFunction="@navigateToPassenger"></SecondaryButton>
+        <PrimaryButton Text="I'm a driver" OnClickFunction="@navigateToDriver"></PrimaryButton>
+    </div>
+</div>
+
+
+@code {
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+    private string name;
+    string? hasLicenseNumber;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+        isLoggedIn = user.Identity != null;
+        userClaims = user.Claims;
+        if (!isLoggedIn) return;
+        var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+        hasLicenseNumber = enumerable.First(claim => claim.Type.Equals("hasLicenseNumber")).Value;
+        Console.WriteLine(hasLicenseNumber);
+    }
+
+    private void navigateToPassenger()
+    {
+        navigationManager.NavigateTo(isLoggedIn ? "/PassengerView" : "/auth/register?type=passenger");
+    }
+
+    private void navigateToDriver()
+    {
+        if (isLoggedIn)
+        {
+            if (Boolean.Parse(hasLicenseNumber))
+            {
+                navigationManager.NavigateTo("/DriverView");
+            }
+            else
+            {
+                navigationManager.NavigateTo("/auth/updateLicense");
+            }
+        }
+        else
+        {
+            navigationManager.NavigateTo("/auth/register?type=driver");
+        }
+        
+    }
+}

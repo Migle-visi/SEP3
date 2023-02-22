@@ -1,0 +1,65 @@
+@if (@Size == "Big")
+{
+    <button class="secondary-button" @onclick="@OnClickFunction">
+                @if (hasArrow)
+                {
+                    if (arrowSide == "Left")
+                    {
+                        <img class="left-arrow" src="icons/arrow.svg" alt="arrow"/>
+                        @Text
+                    }
+                    else
+                    {
+                        @Text
+                        <img class="right-arrow" src="icons/arrow.svg" alt="arrow"/>
+                    }
+                }
+                        else
+                        {
+                            @Text
+                        }
+    </button>
+}
+else
+{
+    <button class="secondary-button-small" @onclick="@OnClickFunction">
+        @if (hasArrow)
+        {
+            if (arrowSide == "Left")
+            {
+                <img class="left-arrow" src="icons/arrow.svg" alt="arrow"/>
+                @Text
+            }
+            else
+            {
+                @Text
+                <img class="right-arrow" src="icons/arrow.svg" alt="arrow"/>
+            }
+        }
+                else
+                {
+                    @Text
+                }
+    </button>
+}
+
+
+@code {
+    [Parameter]
+    public string Text { get; set; } = "Button";
+
+    [Parameter] 
+    public EventCallback  OnClickFunction { get; set; }
+
+    
+
+    [Parameter]
+    public string Size { get; set; } = "Big";
+    
+    [Parameter]
+    public bool hasArrow { get; set; }
+    
+    [Parameter]
+    public string? arrowSide { get; set; }
+
+}

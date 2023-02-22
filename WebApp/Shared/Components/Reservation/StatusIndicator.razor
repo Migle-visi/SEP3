@@ -1,0 +1,11 @@
+<div class="container @(status == "Accepted" ? "accepted" : status == "Pending" ? "pending" : "rejected")">
+    <p class="content">@status</p>
+</div>
+
+@code {
+    [Parameter]
+    public string status { get; set; }
+
+    
+
+}

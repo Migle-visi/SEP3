@@ -1,0 +1,71 @@
+@using Domain.Models
+@using HttpClients.ClientInterfaces
+@using System.Text.Json
+@inject NavigationManager navigationManager
+@inject ILoginService loginService;
+@inject IJSRuntime JsRuntime
+
+
+<div class="ride-wrapper">
+    <div class="ride-inner">
+        <p class="caption">@ride.StartDate.GetFormattedString()</p>
+        <div class="ride-destination">
+            <h5>@ride.StartLocation.City</h5>
+            <img src="icons/arrow.svg"/>
+            <h5>@ride.Destination.City</h5>
+        </div>
+        @if (DriverName != null)
+        {
+                    <p class="caption">@DriverName</p>
+        }
+    </div>
+    <div class="map" id="@ride.Id"/>
+    @if (Detailed)
+    {
+        <button class="select-ride-button" @onclick="InvokeOnClick"><img src="icons/arrow.svg" alt="arrow"/></button>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Domain.Models.Ride ride { get; set; }
+
+    [Parameter]
+    public bool Detailed { get; set; } = true;
+    
+    public string DriverName { get; set; }
+    public RideMap RideMap { get; set; }
+    
+    public void InvokeOnClick()
+    {
+        navigationManager.NavigateTo($"/RideDetails/{ride.Id}");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(ride.StartDate.GetFormattedString());
+        User driver = await loginService.GetDriverByIdAsync(ride.DriverId);
+        DriverName = driver.Name;
+        
+    }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            RideMap = new RideMap()
+            {
+                RideId = ride.Id.ToString(),
+                StartLat = ride.StartLocation.CoordinatesX,
+                StartLng = ride.StartLocation.CoordinatesY,
+                EndLat = ride.Destination.CoordinatesX,
+                EndLng = ride.Destination.CoordinatesY
+            };
+            await JsRuntime.InvokeVoidAsync("initRideMap", JsonSerializer.Serialize(RideMap));
+            StateHasChanged();
+        }
+    }
+
+
+
+}

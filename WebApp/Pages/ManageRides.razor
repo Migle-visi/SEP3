@@ -1,0 +1,58 @@
+@page "/ManageRides"
+@using WebApp.Shared.Components.Ride
+@using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@inject IRideService rideService
+@inject ILoginService loginService
+@using System.Security.Claims
+@using Domain.Models
+@using Ride = Domain.Models.Ride
+ @attribute [Authorize]
+
+<div class="page-wrapper">
+    
+    <h1>Your rides</h1>
+    <div class="back-button-container">
+                <BackButton Url="/DriverView"></BackButton>
+        </div>
+    <div class="rides-container">
+        @foreach (var ride in rides)
+        {
+            <RideManager Ride="ride" DriverName="@userName"/>
+        }
+    </div>
+</div>
+
+
+@code {
+
+    public List<Ride> rides { get; set; } = new List<Ride>();
+    private IEnumerable<Claim>? userClaims;
+    private bool isLoggedIn;
+    private int driverId;
+    public string userName;
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+        isLoggedIn = user.Identity != null;
+        
+        if (!isLoggedIn) return;
+        
+        userClaims = user.Claims;
+        var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+        
+        //to check
+        driverId = Int32.Parse(enumerable.First(claim => claim.Type.Equals("Id")).Value);
+
+        userName = (await loginService.GetDriverByIdAsync(driverId)).Name;
+        
+    
+        rides = await rideService.GetRidesByDriverId(driverId);
+    }
+
+}

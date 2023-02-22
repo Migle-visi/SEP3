@@ -1,0 +1,45 @@
+@page "/RideCompletion/{rideId:int}"
+@using WebApp.Shared.Components.Buttons
+@using WebApp.Shared.Components
+@using WebApp.Shared.Components.Ride
+@using HttpClients.ClientInterfaces
+@using Ride = Domain.Models.Ride
+@using Domain.DTOs
+@using Domain.Models
+@inject IRideService rideService
+@inject ILoginService loginService;
+@attribute [Authorize]
+
+
+<div class="find-rides-page-wrapper">
+    <div class="home-page-titles">
+        <h1 class="title-primary">Your request has been sent</h1>
+        <h5 class="title-secondary">If necessary the driver will contact you.</h5>
+    </div>
+    
+    <div>
+        @if (ride != null && driver != null)
+        {
+            <RideDetailed Ride="ride"></RideDetailed>
+        }
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public int RideId { get; set; }
+    public Ride? ride { get; set; }
+    public User? driver { get; set; }
+    
+    
+    protected override async Task OnInitializedAsync()
+    {
+
+        ride = await rideService.GetRideById(RideId);
+        int driverId = ride.DriverId;
+        driver = await loginService.GetDriverByIdAsync(driverId);
+    }
+    
+    
+}

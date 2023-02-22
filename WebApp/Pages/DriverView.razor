@@ -1,0 +1,89 @@
+@page "/DriverView"
+@using WebApp.Shared.Components.Buttons
+@using System.Security.Claims
+@using HttpClients.ClientInterfaces
+@inject NavigationManager navigationManager
+@inject ILoginService loginService;
+@attribute [Authorize]
+
+<div class="home-page-wrapper">
+<div class="back-button-container">
+            <BackButton></BackButton>
+    </div>
+    <div class="driver-wrapper">
+        <div class="driver-container">
+            <div class="driver-profile">
+                <img src="icons/user.svg"/>
+                <h3>@name</h3>
+            </div>
+                            <span class="divider"/>
+                            <p>More functionalities to come</p>
+        </div>
+        <div class="driver-container">
+            <h3>Create a ride</h3>
+            <span class="divider"/>
+            <p>Let our users know that you are taking a ride so they can join!</p>
+            <SecondaryButton Text="Create" OnClickFunction="@navigateToCreate"></SecondaryButton>
+        </div>
+        <div class="driver-container">
+            <h3>Manage reservations</h3>
+            <span class="divider"/>
+            <p>Accept or reject rides that other users have requested.</p>
+            <SecondaryButton Text="View" OnClickFunction="@navigateToManage"></SecondaryButton>
+        </div>
+                <div class="driver-container">
+                    <h3>Manage rides</h3>
+                    <span class="divider"/>
+                    <p>Check you upcoming rides and passengers.</p>
+                    <SecondaryButton Text="View" OnClickFunction="@navigateToRides"></SecondaryButton>
+                </div>
+    </div>
+</div>
+
+@code {
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+    private string name;
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        return base.OnAfterRenderAsync(firstRender);
+    }
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+        isLoggedIn = user.Identity != null;
+        
+        if (!isLoggedIn) return;
+        
+        userClaims = user.Claims;
+        var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+        string driverId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+        var driver = await loginService.GetDriverByIdAsync(Int32.Parse(driverId));
+        name = driver!.Name;
+    }
+    
+    private void navigateToCreate()
+    {
+        navigationManager.NavigateTo("/CreateRide");
+    }
+
+    private void navigateToManage()
+    {
+        navigationManager.NavigateTo("/ReviewReservations");
+        ;
+    }
+    
+    private void navigateToRides()
+    {
+        navigationManager.NavigateTo("/ManageRides");
+        ;
+    }
+}

@@ -1,0 +1,76 @@
+@using Domain.Models
+@using System.Text.Json
+@using HttpClients.ClientInterfaces
+@inject ILoginService _userService
+@inject IJSRuntime JsRuntime
+
+<div class="ride-details-wrapper">
+    <div class="ride-details-location-wrapper">
+        <div class="ride-details-location-inner">
+            <h3>Starting point</h3>
+            <p class="caption">The driver is going from <span style="font-family: 'PP Mori SemiBold'">@Ride.StartLocation.City</span>.</p>
+        </div>
+        <div class="map" id="start-@Ride.Id"/>
+    </div>
+    <div class="ride-details-location-wrapper">
+        <div class="ride-details-location-inner">
+            <h3>Destination</h3>
+            <p class="caption">The driver is going to <span style="font-family: 'PP Mori SemiBold'">@Ride.Destination.City</span>.</p>
+        </div>
+        <div class="map" id="end-@Ride.Id"/>
+    </div>
+    <div class="ride-details-container">
+        <div class="ride-details-small">
+            <div class="ride-details-small-inner">
+                <h3>Time</h3>
+                <p>@Ride.StartDate.GetTimeString()</p>
+            </div>
+            <div class="ride-details-small-inner">
+                <h4>@Ride.StartDate.GetDateString()</h4>
+            </div>
+        </div>
+        <div class="ride-details-small">
+            <div class="ride-details-small-inner">
+                <h3>Driver</h3>
+                <p>12 Reviews (4.7)</p>
+            </div>
+            <div class="ride-details-small-inner">
+                <h4>@DriverName</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Domain.Models.Ride Ride { get; set; }
+    
+    private RideMap RideMap { get; set; }
+
+    public string DriverName { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        User driver = await _userService.GetDriverByIdAsync(Ride.DriverId);
+        DriverName = driver.Name;
+    }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            RideMap = new RideMap()
+            {
+                RideId = Ride.Id.ToString(),
+                StartLat = Ride.StartLocation.CoordinatesX,
+                StartLng = Ride.StartLocation.CoordinatesY,
+                EndLat = Ride.Destination.CoordinatesX,
+                EndLng = Ride.Destination.CoordinatesY
+            };
+            Console.WriteLine(RideMap.RideId.ToString());
+            await JsRuntime.InvokeVoidAsync("initMarkerMap", JsonSerializer.Serialize(RideMap));
+            StateHasChanged();
+        }
+    }
+
+}

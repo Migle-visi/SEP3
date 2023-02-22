@@ -1,0 +1,139 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = browser
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = true
+build_property.IncludeAllContentForSelfExtract = 
+build_property.RootNamespace = WebApp
+build_property.RootNamespace = WebApp
+build_property.ProjectDir = /Users/kuba/Documents/GitHub/SEP3-Client/WebApp/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/kuba/Documents/GitHub/SEP3-Client/WebApp
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/CreateRide.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3JlYXRlUmlkZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-kek6bl0o00
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/CreateRideCompletion.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3JlYXRlUmlkZUNvbXBsZXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-9yr8lpzs0q
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/DriverView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRHJpdmVyVmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-24t3xyf12a
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/FindRides.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmluZFJpZGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-72ckdcwi84
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-mwezi9xtxa
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-tjzml0ibtr
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/ManageRides.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlUmlkZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-esgejc0kvw
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/PassengerReservations.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGFzc2VuZ2VyUmVzZXJ2YXRpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-w3bzpeodaw
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/PassengerView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGFzc2VuZ2VyVmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-pyxkv05dnn
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/ReviewReservations.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmV2aWV3UmVzZXJ2YXRpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-aqbdawomwm
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/RideCompletion.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmlkZUNvbXBsZXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-03p21zzcg4
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/RideDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmlkZURldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-aq9oehf01x
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/BackButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9CYWNrQnV0dG9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-pl4c3nmwi0
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/NavButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9OYXZCdXR0b24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-3rpybphj65
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/PrimaryButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9QcmltYXJ5QnV0dG9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-a19ez2bdc4
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/SecondaryButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9TZWNvbmRhcnlCdXR0b24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-pv0mw4gf7r
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/TertiaryButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9UZXJ0aWFyeUJ1dHRvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-qyre78ydbk
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Login/LoginComp.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvTG9naW4vTG9naW5Db21wLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-8c05elusus
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Reservation/PassengerReservation.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmVzZXJ2YXRpb24vUGFzc2VuZ2VyUmVzZXJ2YXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-txfb51ryr4
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Reservation/Reservation.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmVzZXJ2YXRpb24vUmVzZXJ2YXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-jod6uixtst
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Reservation/StatusIndicator.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmVzZXJ2YXRpb24vU3RhdHVzSW5kaWNhdG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-ambw5leo0y
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Ride/Ride.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmlkZS9SaWRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-65lottstiw
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Ride/RideCreation.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmlkZS9SaWRlQ3JlYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-lf2pkyo3q2
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Ride/RideDetailed.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmlkZS9SaWRlRGV0YWlsZWQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-zkn7wo5pa4
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Ride/RideManager.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmlkZS9SaWRlTWFuYWdlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ivmbq6fjzk
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Footer.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0Zvb3Rlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-n1ufud1hr7
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-iymxgj1jkn
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Navbar.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdmJhci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ehe4e231qz

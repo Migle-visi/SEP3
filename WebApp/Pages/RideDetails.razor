@@ -1,0 +1,101 @@
+@page "/RideDetails/{rideId:int}"
+@using WebApp.Shared.Components
+
+@inject NavigationManager navigationManager
+@inject ILoginService loginService;
+@* @attribute [Authorize] *@
+
+
+@using WebApp.Shared.Components.Ride
+@using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@using Ride = Domain.Models.Ride
+@using Domain.Models
+@using Domain.DTOs
+@using System.Security.Claims
+@inject IRideService rideService
+
+<div class="find-rides-page-wrapper">
+    <div class="home-page-titles">
+        <div class="primary-titles">
+            <h1 class="title-primary">Are you sure</h1>
+            <h1 class="title-primary">that you want to procced?</h1>
+        </div>
+        <h5 class="title-secondary">Please make sure that details of the ride work for you.</h5>
+    </div>
+    <div>
+        @if (driver != null && ride != null)
+        {
+            <RideDetailed Ride="ride"></RideDetailed>
+        }
+        
+    </div>
+    <div class="outro-container">
+        <h3>Everything all right?</h3>
+        <div class="buttons-container">
+            <TertiaryButton Text="Back to rides" hasArrow="true" arrowSide="Left" OnClickFunction="@InvokeOnClickBack"></TertiaryButton>
+            <SecondaryButton Text="Proceed" hasArrow="true" arrowSide="Right" OnClickFunction="@InvokeOnClick"></SecondaryButton>
+        </div>
+    </div>
+</div>
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+
+    [Parameter]
+    public int RideId { get; set; }
+
+    public Ride? ride { get; set; }
+    public User? driver { get; set; }
+    private string userId;
+
+    
+    protected override async Task OnInitializedAsync()
+    {
+        try
+            {
+                ride = await rideService.GetRideById(RideId);
+                if (ride != null)
+                {
+                    int driverId = ride.DriverId;
+                    driver = await loginService.GetDriverByIdAsync(driverId);
+                }
+                AuthenticationState authState = await AuthState;
+                ClaimsPrincipal user = authState.User;
+                isLoggedIn = user.Identity != null;
+                userClaims = user.Claims;
+                if (!isLoggedIn) return;
+                var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+                userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+    }
+    
+    private async Task InvokeOnClick()
+    {
+        try
+        {
+            await rideService.JoinRide(new JoinRideDto() { RideId = RideId, UserId = Int32.Parse(userId)});
+            navigationManager.NavigateTo($"/RideCompletion/{RideId}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        
+        
+    }
+    
+    private void InvokeOnClickBack()
+    {
+        navigationManager.NavigateTo($"/FindRides");
+    }
+
+}

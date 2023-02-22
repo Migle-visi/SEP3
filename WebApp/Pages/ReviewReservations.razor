@@ -1,0 +1,84 @@
+@page "/ReviewReservations"
+@using WebApp.Shared.Components.Ride
+@using Ride = Domain.Models.Ride
+@using Domain.Models
+@using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@using System.ComponentModel.Design
+@using System.Security.Claims
+@using WebApp.Shared.Components.Reservation
+@using Reservation = Domain.Models.Reservation
+@inject IReservationService reservationService;
+@attribute [Authorize]
+
+<div class="review-reservations-wrapper">
+    <div class="back-button-container">
+                <BackButton Url="/DriverView"></BackButton>
+        </div>
+    @if (reservations != null)
+    {
+        @foreach (Reservation reservation in reservations)
+        {
+            <Reservation passengerName="@reservation.PassengerName" rideId="@reservation.RideId" reservationId="@reservation.ReservationId" didAccept="@reservation.IsAccepted" callback="refreshReservations"></Reservation>
+        }
+        if (reservations.Count == 0)
+        {
+            <h1>No reservations to be managed available</h1>
+        }
+    }
+</div>
+
+@code {
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+
+    List<Reservation>? reservations;
+    string? userId;
+    
+    protected override async Task OnInitializedAsync()
+    {
+
+        try
+        {
+            AuthenticationState authState = await AuthState;
+            ClaimsPrincipal user = authState.User;
+            isLoggedIn = user.Identity != null;
+            userClaims = user.Claims;
+            if (!isLoggedIn) return;
+            var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+            userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+            reservations = await reservationService.GetReservationsToAccept(Int32.Parse(userId));
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
+    
+    }
+
+
+    private async Task refreshReservations()
+    {
+        try
+        {
+            if (userId != null)
+            {
+               reservations = await reservationService.GetReservationsToAccept(Int32.Parse(userId));
+                StateHasChanged();
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+
+        }
+    }
+
+}

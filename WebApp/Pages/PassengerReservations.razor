@@ -1,0 +1,53 @@
+@page "/PassengerReservations"
+@using WebApp.Shared.Components.Reservation
+@using WebApp.Shared.Components.Buttons
+@using Domain.Models
+@using HttpClients.ClientInterfaces
+@using DateTime = Domain.Models.DateTime
+@using System.Security.Claims
+@using Reservation = Domain.Models.Reservation
+@inject IReservationService reservationService
+
+@attribute [Authorize]
+
+<div class="page-wrapper">
+    
+    <h2>Your reservations</h2>
+<div class="back-button-container">
+            <BackButton Url="/PassengerView"></BackButton>
+    </div>
+    <div class="reservations-container">
+        @foreach (var reservation in Reservations)
+        {
+            <PassengerReservation status="@reservation.Status" reservationId="@reservation.ReservationId" rideId="@reservation.RideId"/>
+        }
+    </div>
+</div>
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+
+    public List<Reservation> Reservations { get; set; } = new List<Reservation>();
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+    private string name;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+        isLoggedIn = user.Identity != null;
+        
+        if (!isLoggedIn) return;
+        
+        userClaims = user.Claims;
+        var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+        string userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+
+        Reservations = await reservationService.GetReservationsByUserId(Int32.Parse(userId));
+    }
+
+
+}
